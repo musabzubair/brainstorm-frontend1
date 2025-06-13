@@ -9,12 +9,16 @@ export default function App() {
   const { ideas, loading, error, generateIdeas } = useBrainstorm();
 
   return (
-    <div>
-      <h1>AI Brainstorm Generator</h1>
-      <BrainstormForm onSubmit={generateIdeas} />
-      {loading && <LoadingSpinner />}
-      {error && <ErrorMessage message={error} />}
-      <IdeasList ideas={ideas} />
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-3xl bg-white p-8 rounded-2xl shadow-lg space-y-6">
+        <h1 className="text-3xl font-bold text-center text-gray-800">
+          AI Brainstorm Generator
+        </h1>
+        <BrainstormForm onSubmit={generateIdeas} />
+        {loading && <LoadingSpinner />}
+        {error && <ErrorMessage message={error} />}
+        {!loading && ideas.length > 0 && <IdeasList ideas={ideas} />}
+      </div>
     </div>
   );
 }
